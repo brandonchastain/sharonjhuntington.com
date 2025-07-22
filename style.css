@@ -1,0 +1,65 @@
+html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #f5f3fa; /* Soft off-white text */
+    background-color: #18141c; /* Deep, slightly purple-tinted background */
+}
+
+a {
+    color: #c85fc7; /* Orchid accent for links */
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #b86fc6; /* Slightly lighter orchid on hover */
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    display: inline;
+}
+
+.header-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+.header-professions {
+    font-size: 1rem;
+    font-style: italic;
+    margin: 0.5rem 0 0 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.content-text {
+    padding: 2rem;
+    flex: 1;
+    min-width: 0; /* Prevents flex item from overflowing */
+}
+
+.content-image {
+    flex: 1;
+    min-width: 0; /* Prevents flex item from overflowing */
+}
+
+/* For mobile devices */
+@media screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    .content-text,
+    .content-image {
+        width: 100%;
+    }
+}

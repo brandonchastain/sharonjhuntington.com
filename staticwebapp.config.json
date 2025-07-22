@@ -1,0 +1,25 @@
+{
+  "trailingSlash": "auto",
+  "routes": [
+    {
+      "route": "/img/*",
+      "headers": {
+        "cache-control": "must-revalidate, max-age=15770000"
+      }
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/github?post_login_redirect_uri=.referrer",
+      "statusCode": 302
+    }
+  },
+  "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": ["/img/*.{png,jpg,jpeggif}", "/css/*"]
+  },
+  "mimeTypes": {
+    ".jpg": "image/jpg",
+    ".jpeg": "image/jpg"
+  }
+}
