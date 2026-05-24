@@ -43,13 +43,17 @@ TOKEN=$(az staticwebapp secrets list \
     --resource-group $RESOURCE_GROUP \
     --query 'properties.apiKey' -o tsv)
 
-# Deploy using the CLI from build directory
-pushd ..
-echo "Deploying from build directory..."
-swa deploy sharonjhuntington.com \
+# Deploy using the CLI from a clean empty working dir so swa doesn't
+# recursively scan large folders (~/ or /tmp) looking for config files.
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+WORK_DIR="$(mktemp -d)"
+echo "Deploying from $REPO_DIR (cwd: $WORK_DIR)..."
+cd "$WORK_DIR"
+swa deploy "$REPO_DIR" \
     --deployment-token $TOKEN \
     --env production
-popd
+cd /
+rm -rf "$WORK_DIR"
 
 echo "Deployment complete! Your static web app is being deployed."
 echo "You can find your deployment token in the Azure Portal or use this value:"
